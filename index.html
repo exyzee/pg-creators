@@ -136,8 +136,8 @@ body{
 
 /* Scroll-down nudge */
 .scroll-hint{
-  position:absolute;bottom:36px;right:72px;z-index:2;
   display:flex;flex-direction:column;align-items:center;gap:8px;
+  margin-top:28px;
   opacity:0;animation:heroIn 1s 1.1s cubic-bezier(0.16,1,0.3,1) forwards;
 }
 .scroll-hint span{
@@ -752,7 +752,6 @@ footer{background:var(--white);border-top:1px solid var(--border)}
   .cta-outer{padding:0}
   .hero-container{height:100svh;min-height:500px;border-radius:0}
   .hero-content{padding:28px 24px}
-  .scroll-hint{right:24px;bottom:24px}
   .hero h1{font-size:36px;letter-spacing:-1px}
   .hero-sub{font-size:16px}
   .hero-actions{flex-direction:column}
@@ -802,9 +801,7 @@ footer{background:var(--white);border-top:1px solid var(--border)}
 <!-- HERO -->
 <div class="hero-outer">
   <div class="hero-container">
-    <video class="hero-video" autoplay muted loop playsinline preload="auto">
-      <source src="/hero-bg.mp4" type="video/mp4">
-    </video>
+    <video class="hero-video" autoplay muted loop playsinline preload="auto" src="hero-bg.mp4"></video>
     <div class="hero-spotlight" id="heroSpotlight"></div>
     <!-- Reel panel -->
     <div class="hero-reel-outer">
