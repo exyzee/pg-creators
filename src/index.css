@@ -184,7 +184,7 @@ body{
 }
 .hero-content{
   position:relative;z-index:2;
-  padding:64px 72px;width:100%;
+  padding:64px 72px;width:100%;max-width:1080px;
 }
 .hero-pill{
   display:inline-flex;align-items:center;gap:7px;
