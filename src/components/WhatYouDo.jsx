@@ -28,7 +28,7 @@ export default function WhatYouDo() {
                 <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#16A34A" strokeWidth="1.5"><polyline points="23 6 13.5 15.5 8.5 10.5 1 18" /><polyline points="17 6 23 6 23 12" /></svg>
               </div>
               <h3>Get paid every week</h3>
-              <p>$20 per video, no minimums. If a video pops off you get bonus money on top. Your account, your audience.</p>
+              <p>$20 per video, no minimums. If a video pops off you get bonus money on top.</p>
             </div>
           </div>
         </div>

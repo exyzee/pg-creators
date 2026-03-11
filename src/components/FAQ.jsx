@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 
 const faqs = [
   {
@@ -15,7 +15,7 @@ const faqs = [
   },
   {
     q: 'Do I need a new social media account?',
-    a: "Yes, you'll set up a new account just for Playground content. We'll help you get it going, but the account is yours to keep.",
+    a: "Yes, you'll set up a new account just for Playground content. We'll help you get it started.",
   },
   {
     q: 'Is this a job or internship?',
@@ -29,6 +29,25 @@ const faqs = [
 
 export default function FAQ() {
   const [openIdx, setOpenIdx] = useState(-1)
+  const [revealed, setRevealed] = useState(false)
+
+  // Once the section scrolls into view, lock the revealed state so
+  // re-renders from toggling openIdx don't reset the reveal animation.
+  useEffect(() => {
+    const el = document.getElementById('faq')
+    if (!el) return
+    const obs = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setRevealed(true)
+          obs.disconnect()
+        }
+      },
+      { threshold: 0.08, rootMargin: '0px 0px -40px 0px' }
+    )
+    obs.observe(el)
+    return () => obs.disconnect()
+  }, [])
 
   function toggle(i) {
     setOpenIdx((prev) => (prev === i ? -1 : i))
@@ -44,7 +63,10 @@ export default function FAQ() {
           </div>
           <div className="faq-list">
             {faqs.map((item, i) => (
-              <div className={`faq-item reveal delay-${i + 1}${openIdx === i ? ' open' : ''}`} key={i}>
+              <div
+                className={`faq-item reveal delay-${i + 1}${revealed ? ' in' : ''}${openIdx === i ? ' open' : ''}`}
+                key={i}
+              >
                 <div className="faq-q" onClick={() => toggle(i)}>
                   {item.q}
                   <div className="faq-icon">

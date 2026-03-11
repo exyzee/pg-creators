@@ -41,7 +41,7 @@ export default function Perks() {
                 <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#DB2777" strokeWidth="1.5"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2" /></svg>
               </div>
               <h4>Build your audience</h4>
-              <p>Your account, your followers. We help you grow it but you keep everything.</p>
+              <p>Grow a following around content you're already making. We help you get traction.</p>
             </div>
             <div className="perk-card reveal delay-3">
               <div className="perk-ic" style={{ background: '#EBF4FF' }}>

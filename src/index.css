@@ -23,14 +23,13 @@
   --r:18px;
   --reel-w:300px;
 }
-html{scroll-behavior:smooth;font-size:16px}
+html{scroll-behavior:smooth;font-size:16px;overflow-x:clip}
 body{
   font-family:'Inter',-apple-system,BlinkMacSystemFont,'Helvetica Neue',sans-serif;
   background:var(--bg);
   color:var(--text);
   line-height:1.5;
   -webkit-font-smoothing:antialiased;
-  overflow-x:hidden;
 }
 
 /* ── SCROLL ANIMATIONS ── */
