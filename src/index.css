@@ -715,20 +715,6 @@ footer{background:var(--white);border-top:1px solid var(--border)}
   .ex-nav-row{display:flex}
 }
 
-/* ── CUSTOM CURSOR (.cur files — scaled to default size via 4x descriptor) ── */
-@media(pointer:fine){
-  *:not(input):not(textarea):not(select){
-    cursor:-webkit-image-set(url('/3D Mac Cursors Collection.cur') 4x) 1 2,auto!important;
-    cursor:image-set(url('/3D Mac Cursors Collection.cur') 4x) 1 2,auto!important;
-  }
-  a,button,[role="button"],.h-btn-primary,.h-btn-ghost,.nav-cta,.earn-cta,
-  .reel-video-wrap,.reel-video-wrap *,.ex-video-wrap,.ex-video-wrap *,.faq-q{
-    cursor:-webkit-image-set(url('/3D Mac Cursors Collection (1).cur') 4x) 2 2,pointer!important;
-    cursor:image-set(url('/3D Mac Cursors Collection (1).cur') 4x) 2 2,pointer!important;
-  }
-  input,textarea,select{cursor:text!important}
-}
-
 /* ── HERO SPOTLIGHT ── */
 .hero-spotlight{
   position:absolute;inset:0;pointer-events:none;z-index:1;
