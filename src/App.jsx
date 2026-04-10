@@ -302,44 +302,6 @@ function App() {
     }
     document.addEventListener('keypress', onKeypress)
 
-    // ④ Click live viewer count badge
-    const lcWrap = document.getElementById('liveCountWrap')
-    let spiked = false
-    function onLiveClick() {
-      if (spiked) return
-      spiked = true
-      const steps = [124, 389, 1042, 2871, '🔥k']
-      let i = 0
-      const iv = setInterval(() => {
-        const cur = lcWrap.querySelector('span')
-        const next = document.createElement('span')
-        next.textContent = steps[i]
-        next.style.animation = 'rollUpIn 0.28s cubic-bezier(0.16,1,0.3,1) forwards'
-        if (cur)
-          cur.style.animation = 'rollUpOut 0.28s cubic-bezier(0.16,1,0.3,1) forwards'
-        lcWrap.appendChild(next)
-        setTimeout(() => {
-          lcWrap.innerHTML = ''
-          lcWrap.appendChild(next.cloneNode(true))
-          next.style.animation = ''
-        }, 300)
-        i++
-        if (i >= steps.length) {
-          clearInterval(iv)
-          setTimeout(() => {
-            eggToast('📈', "That's what a viral video looks like.")
-            setTimeout(() => {
-              spiked = false
-            }, 500)
-          }, 400)
-        }
-      }, 320)
-    }
-    if (lcWrap) {
-      lcWrap.style.cursor = 'pointer'
-      lcWrap.addEventListener('click', onLiveClick)
-    }
-
     // ⑤ Triple-click logo
     const logoImg = document.querySelector('.logo-img')
     let lc = 0,
@@ -372,7 +334,7 @@ function App() {
       document.removeEventListener('keydown', onKonami)
       document.removeEventListener('keypress', onKeypress)
       if (viralNum) viralNum.removeEventListener('click', onViralClick)
-      if (lcWrap) lcWrap.removeEventListener('click', onLiveClick)
+
       if (logoImg) logoImg.removeEventListener('click', onLogoClick)
     }
   }, [])
