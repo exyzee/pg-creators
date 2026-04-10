@@ -69,14 +69,14 @@ function App() {
 
     // Small delay to let the DOM render
     const timer = setTimeout(() => {
-      document.querySelectorAll('.h-btn-primary,.earn-cta').forEach((btn) => {
+      document.querySelectorAll('.cta-inner .h-btn-primary,.earn-cta').forEach((btn) => {
         btn.addEventListener('click', handleClick)
       })
     }, 100)
 
     return () => {
       clearTimeout(timer)
-      document.querySelectorAll('.h-btn-primary,.earn-cta').forEach((btn) => {
+      document.querySelectorAll('.cta-inner .h-btn-primary,.earn-cta').forEach((btn) => {
         btn.removeEventListener('click', handleClick)
       })
     }

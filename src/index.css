@@ -95,9 +95,10 @@ body{
   display:inline-flex;align-items:center;padding:7px 16px;
   border-radius:980px;font-size:13px;font-weight:500;text-decoration:none;
   background:var(--blue);color:#fff;font-family:'Inter',sans-serif;
-  border:none;transition:background 0.18s,transform 0.15s,box-shadow 0.18s;
+  border:none;transition:background 0.18s,transform 0.15s,box-shadow 0.18s,opacity 0.35s ease;
   box-shadow:0 2px 10px rgba(0,122,255,0.35);
 }
+.nav-cta-hidden{opacity:0;pointer-events:none;transform:translateY(-4px)}
 .nav-cta:hover{background:var(--blue-dark);transform:translateY(-1px);box-shadow:0 4px 16px rgba(0,122,255,0.45)}
 .nav-cta:active{transform:translateY(0)}
 
@@ -689,6 +690,20 @@ footer{background:var(--white);border-top:1px solid var(--border)}
   }
   .ex-card{flex-shrink:0;width:calc(50vw - 32px)}
   .ex-nav-row{display:flex}
+}
+
+/* ── CUSTOM CURSOR (.cur files — scaled to default size via 4x descriptor) ── */
+@media(pointer:fine){
+  *:not(input):not(textarea):not(select){
+    cursor:-webkit-image-set(url('/3D Mac Cursors Collection.cur') 4x) 1 2,auto!important;
+    cursor:image-set(url('/3D Mac Cursors Collection.cur') 4x) 1 2,auto!important;
+  }
+  a,button,[role="button"],.h-btn-primary,.h-btn-ghost,.nav-cta,.earn-cta,
+  .reel-video-wrap,.reel-video-wrap *,.ex-video-wrap,.ex-video-wrap *,.faq-q{
+    cursor:-webkit-image-set(url('/3D Mac Cursors Collection (1).cur') 4x) 2 2,pointer!important;
+    cursor:image-set(url('/3D Mac Cursors Collection (1).cur') 4x) 2 2,pointer!important;
+  }
+  input,textarea,select{cursor:text!important}
 }
 
 /* ── HERO SPOTLIGHT ── */

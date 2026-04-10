@@ -120,7 +120,7 @@ export default function Hero() {
           </h1>
           <p className="hero-sub">Film yourself using Playground for your work. Post it on TikTok or Instagram. Get paid $20 per video, with extra money when a video blows up.</p>
           <div className="hero-actions">
-            <a href="https://tally.so/r/eqBJ9l" target="_blank" rel="noopener" className="h-btn-primary">Apply to the program</a>
+            <a href="#what" className="h-btn-primary">See how it works</a>
             <a href="#niches" className="h-btn-ghost">See example niches</a>
           </div>
           <div className="hero-badges">

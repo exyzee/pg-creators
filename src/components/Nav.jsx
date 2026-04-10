@@ -1,7 +1,8 @@
-import { useEffect, useRef } from 'react'
+import { useEffect, useRef, useState } from 'react'
 
 export default function Nav() {
   const navRef = useRef(null)
+  const [ctaVisible, setCtaVisible] = useState(false)
 
   // ── Nav scroll glass effect ──
   useEffect(() => {
@@ -16,6 +17,23 @@ export default function Nav() {
     return () => window.removeEventListener('scroll', updateNav)
   }, [])
 
+  // ── Progressive reveal of Apply CTA after #what section ──
+  useEffect(() => {
+    const whatSection = document.getElementById('what')
+    if (!whatSection) return
+    const obs = new IntersectionObserver(
+      ([entry]) => {
+        if (!entry.isIntersecting && entry.boundingClientRect.top < 0) {
+          setCtaVisible(true)
+          obs.disconnect()
+        }
+      },
+      { threshold: 0 }
+    )
+    obs.observe(whatSection)
+    return () => obs.disconnect()
+  }, [])
+
   return (
     <div className="nav-wrap">
       <div className="nav-glass" id="navGlass" ref={navRef}>
@@ -28,7 +46,7 @@ export default function Nav() {
           <a href="#features" className="nav-link">Features</a>
           <a href="#earn" className="nav-link">Earnings</a>
           <a href="#faq" className="nav-link">FAQ</a>
-          <a href="https://tally.so/r/eqBJ9l" target="_blank" rel="noopener" className="nav-cta">Apply now</a>
+          <a href="https://tally.so/r/eqBJ9l" target="_blank" rel="noopener" className={`nav-cta${ctaVisible ? '' : ' nav-cta-hidden'}`}>Apply now</a>
         </div>
       </div>
     </div>
