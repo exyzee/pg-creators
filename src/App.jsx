@@ -1,4 +1,4 @@
-import { useEffect, useCallback } from 'react'
+import { useEffect, useCallback, useState, useRef } from 'react'
 import Nav from './components/Nav'
 import Hero from './components/Hero'
 import StatsBar from './components/StatsBar'
@@ -11,8 +11,60 @@ import Perks from './components/Perks'
 import FAQ from './components/FAQ'
 import FinalCTA from './components/FinalCTA'
 import Footer from './components/Footer'
+import ReadinessGate from './components/ReadinessGate'
+
+const TALLY_URL = 'https://tally.so/r/eqBJ9l'
+const TRACKED_SECTIONS = ['what', 'earn', 'features', 'faq']
 
 function App() {
+  const [viewed, setViewed] = useState({ what: false, earn: false, features: false, faq: false })
+  const [gateOpen, setGateOpen] = useState(false)
+  const viewedRef = useRef(viewed)
+  viewedRef.current = viewed
+
+  // ── SECTION DWELL-TIME TRACKING ──
+  // Marks a section as "viewed" after 1.5 s of 30 % visibility
+  useEffect(() => {
+    const timers = {}
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          const id = entry.target.id
+          if (!TRACKED_SECTIONS.includes(id)) return
+          if (entry.isIntersecting && !viewedRef.current[id]) {
+            timers[id] = setTimeout(() => {
+              setViewed((prev) => ({ ...prev, [id]: true }))
+            }, 1500)
+          } else {
+            clearTimeout(timers[id])
+          }
+        })
+      },
+      { threshold: 0.3 }
+    )
+
+    const t = setTimeout(() => {
+      TRACKED_SECTIONS.forEach((id) => {
+        const el = document.getElementById(id)
+        if (el) observer.observe(el)
+      })
+    }, 100)
+
+    return () => {
+      clearTimeout(t)
+      Object.values(timers).forEach(clearTimeout)
+      observer.disconnect()
+    }
+  }, [])
+
+  // ── APPLY CLICK — gate or pass-through ──
+  const handleApplyClick = useCallback(() => {
+    if (TRACKED_SECTIONS.every((id) => viewedRef.current[id])) {
+      window.open(TALLY_URL, '_blank', 'noopener')
+    } else {
+      setGateOpen(true)
+    }
+  }, [])
   // ── SCROLL REVEAL ──
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -341,18 +393,23 @@ function App() {
 
   return (
     <>
-      <Nav />
+      <Nav onApplyClick={handleApplyClick} />
       <Hero />
       <StatsBar />
       <WhatYouDo />
       <Niches />
-      <Earnings />
+      <Earnings onApplyClick={handleApplyClick} />
       <Features />
       <HowItWorks />
       <Perks />
       <FAQ />
-      <FinalCTA />
+      <FinalCTA onApplyClick={handleApplyClick} />
       <Footer />
+      <ReadinessGate
+        isOpen={gateOpen}
+        onClose={() => setGateOpen(false)}
+        viewed={viewed}
+      />
     </>
   )
 }

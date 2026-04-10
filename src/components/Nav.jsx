@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from 'react'
 
-export default function Nav() {
+export default function Nav({ onApplyClick }) {
   const navRef = useRef(null)
   const [ctaVisible, setCtaVisible] = useState(false)
 
@@ -46,7 +46,7 @@ export default function Nav() {
           <a href="#features" className="nav-link">Features</a>
           <a href="#earn" className="nav-link">Earnings</a>
           <a href="#faq" className="nav-link">FAQ</a>
-          <a href="https://tally.so/r/eqBJ9l" target="_blank" rel="noopener" className={`nav-cta${ctaVisible ? '' : ' nav-cta-hidden'}`}>Apply now</a>
+          <a href="https://tally.so/r/eqBJ9l" target="_blank" rel="noopener" className={`nav-cta${ctaVisible ? '' : ' nav-cta-hidden'}`} onClick={e => { e.preventDefault(); onApplyClick() }}>Apply now</a>
         </div>
       </div>
     </div>

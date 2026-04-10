@@ -39,7 +39,7 @@ function runCountUp(el) {
   }
 }
 
-export default function Earnings() {
+export default function Earnings({ onApplyClick }) {
   const containerRef = useRef(null)
 
   useEffect(() => {
@@ -69,7 +69,7 @@ export default function Earnings() {
               <div className="earn-big" data-count="20" data-prefix="$" data-slot="true">$20</div>
               <div className="earn-big-sub">guaranteed per video</div>
               <p>Every video pays $20. No conditions, no follower count requirements. If a video takes off, you get more on top. Creators who post consistently bring in $500 to $2,000 a month.</p>
-              <a href="https://tally.so/r/eqBJ9l" target="_blank" rel="noopener" className="earn-cta">Apply to the program</a>
+              <a href="https://tally.so/r/eqBJ9l" target="_blank" rel="noopener" className="earn-cta" onClick={e => { e.preventDefault(); onApplyClick() }}>Apply to the program</a>
             </div>
             <div className="earn-right reveal-right">
               <div className="s-eye" style={{ marginBottom: '14px' }}>View bonuses</div>
